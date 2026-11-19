@@ -29,7 +29,8 @@
     "the requirements digest of the criterion version the applicant started under",
     "the applicant's per-application identifier and join DID — disclosed by construction, since the applicant is applying",
     "the challenge — minted by the community for this applicant and spent when the proof is counted",
-    "transcriptDigest over the challenge, the requirements digest, the join DID and every attestation's public values"
+    "transcriptDigest over the challenge, the requirements digest, the join DID and every attestation's public values",
+    "under a rotation-capable profile: spent_root — the community's root over its strictly sorted spent rotation tags at the epoch (record 025, issuance)"
   ],
   "relation": [
     {
@@ -74,7 +75,7 @@
       "component": "005"
     },
     {
-      "clause": "under a rotation-capable profile (record 025), no attester's enrolment leaf has its rotation tag in the community's spent-tag set at the epoch — an attestation under a secret rotated away does not count",
+      "clause": "under a rotation-capable profile (record 025), no attester's enrolment leaf has its rotation tag in the community's spent-tag set at the epoch — an attestation under a secret rotated away does not count. Absence is proven against spent_root, the root over the strictly sorted spent tags; over an unsorted set a neighbour proof can pass for a tag that is present",
       "gadget": "non-revocation",
       "component": "025"
     }
@@ -266,6 +267,11 @@
       "date": "2026-11-19",
       "by": "mitchuski",
       "note": "cryptographic review (zkp-spec #25 (DenisPopov15, 2026-11-18)): the anonymity claim reworded — the set is the non-colluding eligible vetters; the self-attestation gap of the Groth16 route given a stated policy, a k − 1 reading and a rejection code marked unbuilt; option 1's assumptions recorded; a profile's setup requirement stated and the lab setup's soundness limit named. No clause, measurement or state change."
+    },
+    {
+      "date": "2026-11-19",
+      "by": "mitchuski",
+      "note": "record 025's issuance read across (cryptographic review of 2026-11-18, zkp-spec #25): the rotation-tag clause names spent_root, the sorted spent-tag root, as a public input under a rotation-capable profile. The clause is specified and not built. State unchanged."
     }
   ],
   "formal": {
